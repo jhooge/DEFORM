@@ -1,0 +1,1 @@
+This tab shows the data in its original form in a dynamic table that is search and sortable. The features to be displayed in this table, can be selected, using the multivariate features selection option.

@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(caret)\nlibrary(Rtsne) # Barnes-Hut implementation of t-Distributed Stochastic Neighbor Embedding\n\npcaTransform <- function(df) {\n  preProc      <- preProcess(df, method=c(\"pca\", \"center\", \"scale\"))\n  transformed  <- predict(preProc, df)\n  return(transformed) \n}\n\nicaTransform <- function(df, n.comp=10) {\n  preProc      <- preProcess(df, method=c(\"ica\", \"center\", \"scale\"), n.comp=n.comp)\n  transformed  <- predict(preProc, df)\n  return(transformed) \n}\n\n\ntsneTransform <- function(df, perplexity=30) {\n  preProc      <- preProcess(df, method=c(\"knnImpute\"))\n  imputed      <- unique(predict(preProc, df)) ## Impute missing values and remove duplicates\n  transformed  <- Rtsne(imputed, k=3, initial_dims=ncol(imputed), perplexity)\n  \n  return(transformed) \n}\n\n#' Copy arguments into env and re-bind any function's lexical scope to bindTargetEnv .\n#' \n#' See http://winvector.github.io/Parallel/PExample.html for example use.\n#' \n#' \n#' Used to send data along with a function in situations such as parallel execution \n#' (when the global environment would not be available).  Typically called within \n#' a function that constructs the worker function to pass to the parallel processes\n#' (so we have a nice lexical closure to work with).\n#' \n#' @param bindTargetEnv environment to bind to\n#' @param objNames additional names to lookup in parent environment and bind\n#' @param names of functions to NOT rebind the lexical environments of\nbindToEnv <- function(bindTargetEnv=parent.frame(), objNames, doNotRebind=c()) {\n  # Bind the values into environment\n  # and switch any functions to this environment!\n  for(var in objNames) {\n    val <- get(var, envir=parent.frame())\n    if(is.function(val) && (!(var %in% doNotRebind))) {\n      # replace function's lexical environment with our target (DANGEROUS)\n      environment(val) <- bindTargetEnv\n    }\n    # assign object to target environment, only after any possible alteration\n    assign(var, val, envir=bindTargetEnv)\n  }\n}\n\nstartCluster <- function(cores=detectCores()) {\n  cluster <- makeCluster(cores)\n  return(cluster)\n}\n\nshutDownCluster <- function(cluster) {\n  if(!is.null(cluster)) {\n    stopCluster(cluster)\n    cluster <- c()\n  }\n}\n\n\n",
+    "created" : 1460370308741.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1827449658",
+    "id" : "CD465697",
+    "lastKnownWriteTime" : 1459932351,
+    "last_content_update" : 1459932351,
+    "path" : "~/workspace/R/projects/ShinyDashboardExample/helpers.R",
+    "project_path" : "helpers.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

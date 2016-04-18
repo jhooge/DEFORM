@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "plotFeatureClasses <- function(df) {\n  df <- as.data.frame(table(sapply(df, class)))\n  colnames(df) <- c(\"Type\", \"Freq\")\n  df<- df[with(df, order(-Freq)), ]\n  df$Type <- as.factor(df$Type)\n  df$Type <- factor(df$Type, levels=df$Type[order(df$Freq)], ordered=TRUE)\n  \n  fig <- ggplot(data=df) + \n    geom_bar(aes(Type, Freq), stat=\"identity\", position=\"dodge\") +\n    labs(title = \"Feature Types\") +\n    labs(x = \"Type\", y = \"Absolute Frequency\") + \n    # scale_y_discrete() +\n    theme_bw() +\n    theme(plot.title   = element_text(size=18),\n          strip.text.y = element_text(size=14, angle=0),\n          axis.text.x  = element_text(size=12, angle=0),\n          axis.text.y  = element_text(size=12),\n          axis.title.x = element_text(size=10),\n          axis.title.y = element_text(size=10),          \n          legend.position = \"none\")\n  \n  return(fig)\n}\n\ndf <- data.frame(values=X$CellThickness\n\nggplot(X, aes(x=CellThickness)) +\n  geom_density() +\n  geom_point(aes(x=CellThickness, y = 0.0005),\n             alpha = 0.25, size=4) +\n  # geom_vline(xintercept = 2, linetype = \"dashed\", color=\"red\") +\n  # geom_vline(xintercept = -2, linetype = \"dashed\", color=\"red\") +\n  annotate(\"text\", x = Inf, y = Inf, label = sprintf(\"n=%i\", ncol(X)),\n           vjust=1.8, hjust=1.2) +\n  xlab(names) +\n  theme_bw()",
+    "created" : 1460357178541.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "914858921",
+    "id" : "EB53CB3D",
+    "lastKnownWriteTime" : 240518168600,
+    "last_content_update" : 1460368287014,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

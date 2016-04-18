@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(stringr)\n\nload(\"/gpfs01/bhcbio/scratch/trainingData_DHODH.RData\")\n\nY <- as.factor(class.full)\nX_Expr <- X_full[, grepl(\"Expr.\" , names(X_full))]\nX_full <- FM.full\n\ncolnames(X_Expr) <- gsub(\"Expr.\", \"\\\\1\", names(X_Expr))\ncolnames(X_Expr) <- str_replace_all(colnames(X_Expr), \"[.]\", \"_\")\nisNA <- which(is.na(Y))\nY_labeled <- Y[-isNA]\nX_full_labled <- X_full[-isNA, ]\nX_Expr_labled <- X_Expr[-isNA, ]\n\n\n",
+    "created" : 1460621246229.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "1673119874",
+    "id" : "8E200A7B",
+    "lastKnownWriteTime" : 4477242630332116585,
+    "last_content_update" : 1460622444946,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

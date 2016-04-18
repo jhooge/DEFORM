@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "This dashboard represents a first step in the building of an applied \npredictive model. Before you can start building a predictive model, you \nhave to get a feeling for the data that is in front of you. How many samples you have,\nthe dimensionality of the data, how the different variables (features) are distributed,\nwhether they are skewed or if there are outliers in your data, that might be\nproblematic for models that are sensitive to it.",
+    "created" : 1460984636762.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "311615729",
+    "id" : "23E7E6A6",
+    "lastKnownWriteTime" : 1460983398,
+    "last_content_update" : 1460983398,
+    "path" : "~/workspace/R/projects/ShinyDashboardExample/doc/motivation.md",
+    "project_path" : "doc/motivation.md",
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "markdown"
+}

@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "worker <- function() {\n  bindToEnv(objNames=c(\"topic.proportions\", \"opt_k\"))\n  function(perplexity) {\n    tsne::tsne(topic.proportions, k=2, initial_dims=opt_k+1, perplexity=perplexity)\n  }\n}\n\nperplexities <- seq(5, 50, by=5)\nt1 <- Sys.time()\ncluster <- startCluster()\nX_tSNE_projections <- parLapply(cluster, perplexities, worker())\nshutDownCluster(cluster)\nt2 <- Sys.time()\nt2 - t1\n\nX_tSNE_projected <- X_tSNE_projections[[1]]\n\nworker <- function() {\n  bindToEnv(objNames=c(\"topic.proportions\", \"opt_k\"))\n  function(perplexity) {\n    tsne::tsne(topic.proportions, k=2, initial_dims=opt_k+1, perplexity=perplexity)\n  }\n}\n\nperplexities <- seq(5, 50, by=5)\nt1 <- Sys.time()\ncluster <- startCluster()\nX_tSNE_projections <- parLapply(cluster, perplexities, worker())\nshutDownCluster(cluster)\nt2 <- Sys.time()\nt2 - t1\n\nX_tSNE_projected <- X_tSNE_projections[[1]]",
+    "created" : 1459927800534.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "67546470",
+    "id" : "2E964933",
+    "lastKnownWriteTime" : 8241994560065793628,
+    "last_content_update" : 1459927907390,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
