@@ -14,7 +14,7 @@ source("visualizations.R")
 options(shiny.maxRequestSize = 9*1024^2)
 
 ui <- dashboardPage(
-  dashboardHeader(title="Basic Dashboard"),
+  dashboardHeader(title="DEFORM"),
   
   dashboardSidebar(
     sidebarMenu(
@@ -371,9 +371,29 @@ server <- function(input, output, session) {
                   content = "The selected feature should be numeric", 
                   append = FALSE, style = "warning")
     }
-    
     print(qqPlot(data))
   })
+  
+  output$downloadReport <- downloadHandler(
+    
+    filename = "You report.pdf",
+    content = function(file) {
+      pdf(file)
+      
+      ## If you have displayed some Datatables in any of your tabs
+      pushViewport(viewport(layout = grid.layout(3, 2, heights = unit(c(0.5, 5, 5), "null")))) 
+      sample<- sampledatatable() ## Function which you have made in server.R
+      sample<- grid.table(sample)
+      vp = viewport(layout.pos.row = 2, layout.pos.col = 1:2)
+      grid.text("Your Datatable", vp = viewport(layout.pos.row = 1, layout.pos.col = 1:2))
+      grid.newpage()
+      
+      print(plot1()) # Function for the plot you made it in Server.R
+      print(plot2())
+      
+      dev.off()
+    }
+  )
   
   # output$dimRed2DPlot <- renderPlotly({
   #   input$computeDimRedBtn
