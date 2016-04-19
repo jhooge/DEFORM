@@ -38,6 +38,8 @@ Here you can select a single feature for which all univariate visualizations, li
 ### Select Multivariate Features
 Here you can select a number of features from the matrix that has been loaded, which will be included in the multivariate visualizations like feature correlation diagrams, skewness plots or dimensionality reduction techniques.
 
+![Sidebar](figures/Sidebar.png "Sidebar")
+
 ## Summary Statistics
 
 This tab gives you an overview of the types of features (discrete or continuous) contained in the uploaded feature matrix. If the response vector is discrete the tab will also display the number of each label within the response, to give an indication about how the different classes are balanced over all samples. As strong dysbalances have to be considered in your cross-validation scheme, and the general prevalence of class prediction outcome. Additionally the distribution of each selected feature is displayed in a violin plot overlayed with a box plot, either over each class in the label vector, select in the "Label" option, or against another feature that can be continuous as well. Last but not least a basic summary statistics table is displayed, to give an overview over the number of observations, missing values, skewness, kurtosis and much more.
