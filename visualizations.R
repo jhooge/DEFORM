@@ -306,13 +306,18 @@ pca3dPlot <- function(X, label) {
     config(displayModeBar = F)
 }
 
+## does not work anymore since caret has been updated 
+## preProc$trace does not exist anymore !!
 screePlotPCA <- function(X) {
   preProc    <- preProcess(X, method=c("pca", "center", "scale"))
   components <- colnames(preProc$rotation)
   numComp    <- preProc$numComp
-  cumVar     <- preProc$trace[1:numComp]
+  
+  # cumVar     <- preProc$trace[1:numComp]
+  cumVar     <- cumsum(preProc$std^2/sum(preProc$std^2))
   screeDF    <- data.frame(Component=1:numComp, 
                            CumulativeVariance=cumVar)
+  
   
   fig <- plot_ly(screeDF, 
                  x = Component, 

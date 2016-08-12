@@ -11,6 +11,8 @@ library(plotly)
 
 source("visualizations.R")
 
+print(sessionInfo())
+
 options(shiny.maxRequestSize = 9*1024^2)
 
 ui <- dashboardPage(
@@ -131,12 +133,13 @@ ui <- dashboardPage(
                            collapsible = TRUE,
                            height=10,
                            rbokehOutput("dimRed2DPlot"))
-              ),
-              fluidRow(box(title="Screeplot",
-                           status = "primary", solidHeader = TRUE,
-                           collapsible = TRUE,
-                           plotlyOutput("screePlot"))
               )
+              ## Does not work anymore since caret has been updated
+              # fluidRow(box(title="Screeplot",
+              #              status = "primary", solidHeader = TRUE,
+              #              collapsible = TRUE,
+              #              plotlyOutput("screePlot"))
+              # )
       ),
       tabItem(tabName = "doc",
               fluidRow(
@@ -374,26 +377,26 @@ server <- function(input, output, session) {
     print(qqPlot(data))
   })
   
-  output$downloadReport <- downloadHandler(
-    
-    filename = "You report.pdf",
-    content = function(file) {
-      pdf(file)
-      
-      ## If you have displayed some Datatables in any of your tabs
-      pushViewport(viewport(layout = grid.layout(3, 2, heights = unit(c(0.5, 5, 5), "null")))) 
-      sample<- sampledatatable() ## Function which you have made in server.R
-      sample<- grid.table(sample)
-      vp = viewport(layout.pos.row = 2, layout.pos.col = 1:2)
-      grid.text("Your Datatable", vp = viewport(layout.pos.row = 1, layout.pos.col = 1:2))
-      grid.newpage()
-      
-      print(plot1()) # Function for the plot you made it in Server.R
-      print(plot2())
-      
-      dev.off()
-    }
-  )
+  # output$downloadReport <- downloadHandler(
+  #   
+  #   filename = "You report.pdf",
+  #   content = function(file) {
+  #     pdf(file)
+  #     
+  #     ## If you have displayed some Datatables in any of your tabs
+  #     pushViewport(viewport(layout = grid.layout(3, 2, heights = unit(c(0.5, 5, 5), "null")))) 
+  #     sample<- sampledatatable() ## Function which you have made in server.R
+  #     sample<- grid.table(sample)
+  #     vp = viewport(layout.pos.row = 2, layout.pos.col = 1:2)
+  #     grid.text("Your Datatable", vp = viewport(layout.pos.row = 1, layout.pos.col = 1:2))
+  #     grid.newpage()
+  #     
+  #     print(plot1()) # Function for the plot you made it in Server.R
+  #     print(plot2())
+  #     
+  #     dev.off()
+  #   }
+  # )
   
   # output$dimRed2DPlot <- renderPlotly({
   #   input$computeDimRedBtn
@@ -481,19 +484,19 @@ server <- function(input, output, session) {
     return(print(fig))
   })
   
-  output$screePlot <-  renderPlotly({
-    input$computeDimRedBtn
-    selected   <- isolate(selectedMultiFeatures())
-    
-    data <- inputData()[, selected]
-    
-    fig <- NULL
-
-    if (input$dimRedSelect == "PCA") {
-      fig <- screePlotPCA(data)
-    }
-    return(print(fig))
-  })
+  ## does not work anymor since caret has been updated
+  # output$screePlot <-  renderPlotly({
+  #   input$computeDimRedBtn
+  #   selected   <- isolate(selectedMultiFeatures())
+  #   
+  #   data <- inputData()[, selected]
+  #   
+  #   fig <- NULL
+  #   if (input$dimRedSelect == "PCA") {
+  #     fig <- screePlotPCA(data)
+  #   }
+  #   return(print(fig))
+  # })
   
   output$dataTable <- DT::renderDataTable({
     selected   <- selectedMultiFeatures()

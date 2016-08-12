@@ -11,4 +11,3 @@ as dimensionality reduction, lossy data compression, feature extraction, and dat
 
 ## ICA
 Independent component analysis, or ICA is a computational method for separating a multivariate signal into additive subcomponents. This is done by assuming that the subcomponents are non-Gaussian signals and that they are statistically independent from each other. ICA is a special case of blind source separation. A common example application is the "cocktail party problem" of listening in on one person's speech in a noisy room.
-
