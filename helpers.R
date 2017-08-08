@@ -1,5 +1,5 @@
 library(caret)
-library(Rtsne) # Barnes-Hut implementation of t-Distributed Stochastic Neighbor Embedding
+# library(Rtsne) # Barnes-Hut implementation of t-Distributed Stochastic Neighbor Embedding
 
 
 pcaTransform <- function(df) {
@@ -14,13 +14,13 @@ icaTransform <- function(df, n.comp=10) {
   return(transformed) 
 }
 
-tsneTransform <- function(df, perplexity=30) {
-  preProc      <- preProcess(df, method=c("knnImpute"))
-  imputed      <- unique(predict(preProc, df)) ## Impute missing values and remove duplicates
-  transformed  <- Rtsne(imputed, k=3, initial_dims=ncol(imputed), perplexity)
-  
-  return(transformed) 
-}
+# tsneTransform <- function(df, perplexity=30) {
+#   preProc      <- preProcess(df, method=c("knnImpute"))
+#   imputed      <- unique(predict(preProc, df)) ## Impute missing values and remove duplicates
+#   transformed  <- Rtsne(imputed, k=3, initial_dims=ncol(imputed), perplexity)
+#   
+#   return(transformed) 
+# }
 
 #' Copy arguments into env and re-bind any function's lexical scope to bindTargetEnv .
 #' 

@@ -83,11 +83,7 @@ Independent component analysis, or ICA is a computational method for separating 
 ![Dimensionality Reduction](figures/DimensionalityReduction.png "Dimensionality Reduction")
 
 ## Author Information
-
-Jens Hooge  
-Research and Clinical Sciences Group  
-Tel: +49 30 468 17260  
-E-mail: [jens.hooge@bayer.com](mailto:jens.hooge@bayer.com)  
+Jens Hooge <[jens.hooge@gmail.com](mailto:jens.hooge@gmail.com)>
 
 
 

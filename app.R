@@ -484,7 +484,7 @@ server <- function(input, output, session) {
     return(print(fig))
   })
   
-  ## does not work anymor since caret has been updated
+  ## does not work anymore since caret has been updated
   # output$screePlot <-  renderPlotly({
   #   input$computeDimRedBtn
   #   selected   <- isolate(selectedMultiFeatures())

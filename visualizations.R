@@ -3,7 +3,7 @@ library(ggplot2)
 library(caret)
 library(fastICA)
 library(reshape2)
-library(d3heatmap)
+#library(d3heatmap)
 library(plotly)
 
 source("helpers.R")
@@ -298,9 +298,9 @@ pca3dPlot <- function(X, label) {
                            PC2=X_projected[, 2],
                            PC3=X_projected[, 3])
   
-  plot_ly(projection, x=PC1, y=PC2, z=PC3, 
-                 text=paste("Label: ", Label),
-                 color=Label,
+  plot_ly(projection, x=~PC1, y=~PC2, z=~PC3, 
+                 text=~paste("Label: ", Label),
+                 color=~Label,
                  opacity=0.6,
                  type="scatter3d", mode="markers") %>%
     config(displayModeBar = F)
@@ -425,9 +425,9 @@ ica3dPlot <- function(X, label) {
                            IC2=X_projected[, 2],
                            IC3=X_projected[, 3])
   
-  plot_ly(projection, x=IC1, y=IC2, z=IC3, 
-                 text=paste("Label: ", Label),
-                 color=Label,
+  plot_ly(projection, x=~IC1, y=~IC2, z=~IC3, 
+                 text=~paste("Label: ", Label),
+                 color=~Label,
                  type="scatter3d", mode="markers") %>% 
     config(displayModeBar = F)
 }
